@@ -45,7 +45,23 @@ public class WaveManager : MonoBehaviour
         if (isSpawning) return;
 
         currentWave++;
-        enemiesToSpawn = baseEnemiesPerWave + (currentWave - 1) * 3; // +3 ennemis par vague
+
+        // Donne des points d'upgrade à la fin de la vague précédente
+        if (upgradeManager != null)
+        {
+            upgradeManager.AddUpgradePoints(currentWave);
+        }
+
+        // Calcule le nombre d'ennemis avec le multiplicateur
+        float baseEnemies = baseEnemiesPerWave + (currentWave - 1) * 3;
+        if (upgradeManager != null)
+        {
+            enemiesToSpawn = Mathf.RoundToInt(baseEnemies * upgradeManager.GetEnemyCountMultiplier());
+        }
+        else
+        {
+            enemiesToSpawn = Mathf.RoundToInt(baseEnemies);
+        }
 
         // Désactive le bouton pendant le spawn
         if (startWaveButton != null)
@@ -64,11 +80,18 @@ public class WaveManager : MonoBehaviour
     {
         isSpawning = true;
 
+        // Calcule le délai entre spawns avec le multiplicateur
+        float currentSpawnDelay = timeBetweenSpawns;
+        if (upgradeManager != null)
+        {
+            currentSpawnDelay = timeBetweenSpawns * upgradeManager.GetSpawnSpeedMultiplier();
+        }
+
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             SpawnEnemy();
             UpdateUI();
-            yield return new WaitForSeconds(timeBetweenSpawns);
+            yield return new WaitForSeconds(currentSpawnDelay);
         }
 
         isSpawning = false;

@@ -5057,19 +5057,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51615f64e7caeec46b7b8896482f7313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradePoints: 5
   damageLevel: 1
   speedLevel: 1
   healthLevel: 1
+  spawnSpeedLevel: 1
+  enemyCountLevel: 1
+  damageCost: 1
+  speedCost: 1
+  healthCost: 1
+  spawnSpeedCost: 2
+  enemyCountCost: 3
   damagePerLevel: 0.25
   speedPerLevel: 0.2
   healthPerLevel: 0.3
+  spawnSpeedPerLevel: 0.15
+  enemyCountPerLevel: 0.2
+  pointsText: {fileID: 397270598}
   damageText: {fileID: 609059040}
   speedText: {fileID: 716002126}
   healthText: {fileID: 760947764}
+  spawnSpeedText: {fileID: 325764668}
+  enemyCountText: {fileID: 1014514426}
   feedbackText: {fileID: 52009626}
   damageButton: {fileID: 386676019}
   speedButton: {fileID: 844873648}
   healthButton: {fileID: 683044179}
+  spawnSpeedButton: {fileID: 513849925}
+  enemyCountButton: {fileID: 2102136832}
 --- !u!1 &973953134
 GameObject:
   m_ObjectHideFlags: 0
